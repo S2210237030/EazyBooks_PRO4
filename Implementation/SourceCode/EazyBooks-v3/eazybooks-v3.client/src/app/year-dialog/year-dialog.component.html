@@ -1,0 +1,14 @@
+<body>
+  <h2 mat-dialog-title style="color: white;">{{ 'SELECT_YEAR_TITLE' | translate }}</h2>
+  <div mat-dialog-content id="content">
+    <mat-form-field appearance="fill" id="field">
+      <mat-label>{{ 'YEAR_LABEL' | translate }}</mat-label>
+      <input matInput type="number" [(ngModel)]="selectedYear" min="2000" [max]="maxYear" required #yearInput="ngModel" (ngModelChange)="validateYear()" style="cursor: pointer;">
+      <mat-error *ngIf="yearInput.invalid || !yearInput.valid">{{ 'YEAR_ERROR' | translate }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions id="footer">
+    <button mat-button (click)="closeDialog()" id="button">{{ 'CANCEL_BUTTON' | translate }}</button>
+    <button mat-button [mat-dialog-close]="selectedYear" id="button" cdkFocusInitial [disabled]="yearInput.invalid || !selectedYear">{{ 'OK_BUTTON' | translate }}</button>
+  </div>
+</body>

@@ -1,0 +1,87 @@
+<body>
+  <h2 mat-dialog-title style="color: white">
+    {{data.id ? ('EDIT_BUDGET' | translate) : ('NEW_BUDGET' | translate)}}
+  </h2>
+  <div mat-dialog-content>
+    <form [formGroup]="budgetForm">
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'BUDGET_TYPE' | translate }}</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="saving">{{ 'SAVING_BUDGET' | translate }}</mat-option>
+          <mat-option value="spending">{{ 'SPENDING_BUDGET' | translate }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="budgetForm.controls['type'].hasError('required')">
+          {{ 'TYPE_REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'TITLE' | translate }}</mat-label>
+        <input matInput formControlName="title">
+        <mat-error *ngIf="budgetForm.controls['title'].hasError('required')">
+          {{ 'TITLE_REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'AMOUNT' | translate }}</mat-label>
+        <input matInput type="number" formControlName="amount">
+        <mat-error *ngIf="budgetForm.controls['amount'].hasError('required')">
+          {{ 'AMOUNT_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="budgetForm.controls['amount'].hasError('min')">
+          {{ 'AMOUNT_GREATER_THAN_ZERO' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ spentLabel | translate }}</mat-label>
+        <input matInput type="number" formControlName="spent">
+        <mat-error *ngIf="budgetForm.controls['spent'].hasError('required')">
+          {{ 'SPENT_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="budgetForm.controls['spent'].hasError('min')">
+          {{ 'SPENT_GREATER_THAN_ZERO' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'GOAL_DATE' | translate }}</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="goalDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="budgetForm.controls['goalDate'].hasError('required')">
+          {{ 'GOAL_DATE_REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'CATEGORY' | translate }}</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of categories" [value]="category.name">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="budgetForm.controls['category'].hasError('required')">
+          {{ 'CATEGORY_REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'STATUS' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="aktiv">{{ 'STATUS_ACTIVE' | translate }}</mat-option>
+          <mat-option value="beendet">{{ 'STATUS_COMPLETED' | translate }}</mat-option>
+          <mat-option value="abgebrochen">{{ 'STATUS_CANCELLED' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions id="footer">
+    <button mat-button (click)="onCancel()" id="button">{{ 'CANCEL' | translate }}</button>
+    <button mat-button color="primary" (click)="onSave()" id="button">
+      {{ data.id ? ('SAVE' | translate) : ('ADD' | translate) }}
+    </button>
+  </div>
+</body>

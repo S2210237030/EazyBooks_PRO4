@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h2 {
+  color: var(--text-color); /* Text color based on theme */
+  font-size: 22px;
+  text-align: center;
+  background-color: var(--button-background); /* Background color based on theme */
+  height: 75px;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background-color: var(--background-color); /* Background color based on theme */
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+label {
+  font-size: 14px;
+  margin-right: 6px;
+  color: var(--text-color); /* Label color based on theme */
+}
+
+#imageUpload {
+  margin-bottom: 20px;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--button-background); /* Background color based on theme */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 0;
+}
+
+  .upload-button:hover {
+    background-color: var(--button-hover-background); /* Hover background color based on theme */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .upload-button:disabled {
+    background-color: var(--input-border-color); /* Disabled background color based on theme */
+    cursor: not-allowed;
+  }
+
+input[type="file"] {
+  display: none;
+}
+
+.image-name {
+  font-size: 16px;
+  color: var(--text-color); /* Text color based on theme */
+  margin-left: 8px;
+}
+
+#button {
+  background-color: none;
+  color: var(--text-color-button); /* Text color based on theme */
+  margin-left: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+  #button:hover {
+    background-color: var(--button-hover-background); /* Hover background color based on theme */
+  }
+
+#footer {
+  background-color: var(--button-background); /* Footer background color based on theme */
+  height: 75px;
+}

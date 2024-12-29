@@ -1,0 +1,88 @@
+/* Container Styles */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color); /* Background color based on theme */
+  border: 1px solid var(--input-border-color); /* Border color based on theme */
+  border-radius: 10px;
+  box-shadow: var(--box-shadow); /* Box shadow based on theme */
+  margin-top: 5vh;
+}
+
+/* Header */
+h2 {
+  text-align: center;
+  color: var(--text-color); /* Text color based on theme */
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Label */
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-color); /* Text color based on theme */
+  font-weight: bold;
+}
+
+/* Input Fields */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid var(--input-border-color); /* Border color based on theme */
+  color: var(--text-color);
+  background-color: var(--input-background);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: var(--button-background); /* Focus border color based on theme */
+    background-color: var(--input-background);
+    outline: none;
+  }
+
+/* Button */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--button-background); /* Background color based on theme */
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color-button); /* Text color based on theme */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+  button:hover {
+    background-color: var(--button-hover-background); /* Hover background color based on theme */
+  }
+
+/* Paragraph */
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Anchor */
+a {
+  color: var(--link-color); /* Link color based on theme */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+  a:hover {
+    text-decoration: underline;
+  }

@@ -1,0 +1,26 @@
+<div class="categories-container">
+
+  <h2 style="margin-top: 40px;">{{ 'CATEGORIES' | translate }}</h2>
+
+  <div class="categories-list">
+    <ng-container *ngFor="let category of categories">
+      <span class="categories-badge" [ngClass]="{'custom': category.custom}">
+        {{ category.name }}
+        <i class="fas fa-trash delete-icon" (click)="deleteCategories(category, $event); $event.stopPropagation();">
+          <mat-icon>delete</mat-icon>
+        </i>
+      </span>
+    </ng-container>
+  </div>
+
+  <div class="add-categories">
+    <input type="text"
+           [(ngModel)]="newCategory"
+           [placeholder]=" 'ADD_CATEGORY' | translate"
+           class="categories-input"
+           (keydown.enter)="addCategories()" />
+    <button mat-fab (click)="addCategories()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

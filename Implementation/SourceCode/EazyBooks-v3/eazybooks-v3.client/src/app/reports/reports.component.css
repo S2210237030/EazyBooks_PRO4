@@ -1,0 +1,124 @@
+.report-form {
+  padding: 16px;
+  background-color: var(--input-background);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  justify-content: center;
+  align-items: center;
+}
+
+  .report-form h2 {
+    color: var(--text-color);
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+
+  .report-form div {
+    margin-bottom: 16px;
+  }
+
+  .report-form label {
+    font-size: 14px;
+    margin-right: 8px;
+    color: var(--text-color);
+  }
+
+  .report-form select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    width: 100%;
+    background-color: var(--input-background);
+    color: var(--text-color);
+  }
+
+  .report-form input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    width: 96%;
+    background-color: var(--input-background);
+    color: var(--text-color);
+  }
+
+  .report-form button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--button-background);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    align-content: center;
+    margin-right: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+    .report-form button:hover {
+      background-color: var(--button-hover-background);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .report-form button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px; /* Abstand zwischen den Buttons */
+  margin-top: 16px; /* Abstand nach oben */
+}
+
+.reports-list {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--input-background);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+}
+
+  .reports-list h2 {
+    color: var(--text-color);
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+
+  .reports-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .reports-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .reports-list button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-left: 8px;
+    padding: 4px 8px;
+    font-size: 12px;
+    background-color: var(--button-background);
+    border-radius: 4px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+    .reports-list button:hover {
+      background-color: var(--button-hover-background);
+    }

@@ -1,0 +1,88 @@
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100vh;
+}
+
+.categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+.categories-badge {
+  background-color: var(--categories-badge-background);
+  color: var(--text-color);
+  border-radius: 15px;
+  padding: 8px 15px;
+  margin: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+  .categories-badge:hover {
+    background-color: var(--categories-badge-hover-background); /* Hover-Effekt */
+    padding-right: 35px;
+  }
+
+.delete-icon {
+  margin-left: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  color: var(--delete-icon-color);
+  transition: opacity 0.3s ease; /* Weiche Übergänge für Sichtbarkeit */
+  opacity: 0; /* Initial unsichtbar */
+  position: absolute; /* Positionierung relativ zum Badge */
+  right: 10px; /* Rechtsbündig */
+  top: 50%; /* Vertikal zentriert */
+  transform: translateY(-50%);
+}
+
+.categories-badge:hover .delete-icon {
+  opacity: 1; /* Sichtbar beim Hover */
+}
+
+.add-categories {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 75px;
+  right: 200px;
+  width: 60px;
+  height: 60px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.categories-input {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+button {
+  position: fixed;
+  bottom: 77px;
+  right: 20px;
+  background-color: var(--button-background);
+  color: var(--text-color);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

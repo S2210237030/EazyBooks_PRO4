@@ -1,0 +1,131 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: var(--button-background);
+  color: var(--text-color-button);
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 80px;
+  right: 0;
+  height: 60px;
+  z-index: 1000;
+}
+
+  header h1 {
+    margin: 0;
+  }
+
+.app-container {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 80px;
+  background-color: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 15;
+}
+
+  .sidebar button {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+    .sidebar button img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidebar button.active {
+      background-color: var(--button-background);
+      color: var(--text-color-button);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+    }
+
+      .sidebar button.active img {
+        width: 40px;
+        height: 40px;
+      }
+
+    .sidebar button:hover {
+      background-color: var(--button-hover-background);
+      color: var(--text-color-button);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+    }
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  overflow-y: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 80px;
+}
+
+footer {
+  background-color: var(--button-background);
+  color: var(--text-color-button);
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 80px;
+  right: 0;
+  height: 25px;
+  z-index: 1000;
+}
+
+  footer p {
+    margin: 0;
+  }
+
+button {
+  font-size: 1rem;
+  background-color: var(--button-background);
+  color: var(--text-color-button);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+  button:hover {
+    background-color: var(--button-hover-background);
+  }

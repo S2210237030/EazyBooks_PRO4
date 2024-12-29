@@ -1,0 +1,126 @@
+/* Schatten für Tiefe */
+.box-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Allgemeine Stile für das Dashboard */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+main {
+  min-width: 600px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--input-background); /* Hintergrundfarbe für das Dashboard */
+  box-shadow: var(--box-shadow); /* Schatten für das Dashboard */
+  border-radius: 8px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.content {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.year-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.year {
+  font-size: 34px;
+  font-weight: bold;
+  color: var(--text-color); /* Textfarbe für das Jahr */
+  display: flex;
+  align-items: center;
+}
+
+  .year span {
+    margin-right: 10px;
+  }
+
+.change-year-button {
+  background-color: var(--button-background); /* Hintergrundfarbe für den Button */
+  color: var(--text-color);
+  margin-left: 8px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+  .change-year-button:hover {
+    background-color: var(--button-hover-background); /* Hover-Farbe für den Button */
+  }
+
+.mat-icon {
+  font-size: 20px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 600px;
+  min-width: 500px;
+}
+
+.stat {
+  background-color: var(--stat-background); /* Hintergrundfarbe für die Statistiken */
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+  width: 100%;
+}
+
+.label {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color); /* Textfarbe für das Label */
+}
+
+.amount {
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: center;
+  color: var(--text-color); /* Textfarbe für den Betrag */
+}
+
+.chart {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  background-color: var(--chart-background); /* Hintergrundfarbe für das Diagramm */
+  border-radius: 8px;
+  box-shadow: var(--box-shadow); /* Schatten für das Diagramm */
+}

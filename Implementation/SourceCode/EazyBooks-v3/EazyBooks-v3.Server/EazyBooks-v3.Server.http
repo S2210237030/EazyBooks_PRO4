@@ -1,0 +1,6 @@
+@EazyBooks_v3.Server_HostAddress = http://localhost:5068
+
+GET {{EazyBooks_v3.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,52 @@
+<div class="container">
+  <header>
+    <h1>{{ 'APP_NAME' | translate }}</h1>
+  </header>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <button (click)="showSection('dashboard')" [class.active]="selectedSection === 'dashboard'">
+        <img src="assets/images/dashboard.png" alt="{{ 'DASHBOARD_ALT' | translate }}" title="{{ 'DASHBOARD_TITLE' | translate }}">
+      </button>
+      <button (click)="showSection('transactions')" [class.active]="selectedSection === 'transactions'">
+        <img src="assets/images/transaktionen.png" alt="{{ 'TRANSACTIONS_ALT' | translate }}" title="{{ 'TRANSACTIONS_TITLE' | translate }}">
+      </button>
+      <button (click)="showSection('budget')" [class.active]="selectedSection === 'budget'">
+        <img src="assets/images/budget.png" alt="{{ 'BUDGET_ALT' | translate }}" title="{{ 'BUDGET_TITLE' | translate }}">
+      </button>
+      <button (click)="showSection('reports')" [class.active]="selectedSection === 'reports'">
+        <img src="assets/images/berichte.png" alt="{{ 'REPORTS_ALT' | translate }}" title="{{ 'REPORTS_TITLE' | translate }}">
+      </button>
+      <button (click)="showSection('categories')" [class.active]="selectedSection === 'categories'">
+        <img src="assets/images/kategorien.png" alt="{{ 'CATEGORIES_ALT' | translate }}" title="{{ 'CATEGORIES_TITLE' | translate }}">
+      </button>
+      <button (click)="showSection('settings')" [class.active]="selectedSection === 'settings'">
+        <img src="assets/images/einstellungen.png" alt="{{ 'SETTINGS_ALT' | translate }}" title="{{ 'SETTINGS_TITLE' | translate }}">
+      </button>
+    </aside>
+    <main>
+      <ng-container *ngIf="selectedSection === 'dashboard'">
+        <app-dashboard></app-dashboard>
+      </ng-container>
+      <ng-container *ngIf="selectedSection === 'transactions'">
+        <app-transactions></app-transactions>
+      </ng-container>
+      <ng-container *ngIf="selectedSection === 'budget'">
+        <app-budget></app-budget>
+      </ng-container>
+      <ng-container *ngIf="selectedSection === 'reports'">
+        <app-reports></app-reports>
+      </ng-container>
+      <ng-container *ngIf="selectedSection === 'categories'">
+        <app-categories></app-categories>
+      </ng-container>
+      <ng-container *ngIf="selectedSection === 'settings'">
+        <app-settings></app-settings>
+      </ng-container>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 {{ 'FOOTER_TEXT' | translate }}</p>
+  </footer>
+</div>

@@ -1,0 +1,9 @@
+<!-- Main Application Shell -->
+<div class="content" *ngIf="isLoggedIn">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Main content area where router-outlet will dynamically load components -->
+<div class="content" *ngIf="!isLoggedIn">
+  <router-outlet></router-outlet>
+</div>

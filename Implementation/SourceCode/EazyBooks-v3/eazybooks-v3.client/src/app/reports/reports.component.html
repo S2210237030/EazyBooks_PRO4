@@ -1,0 +1,31 @@
+<div class="report-form">
+  <h2>{{ 'CREATE_REPORT' | translate }}</h2>
+
+  <div>
+    <label for="month">{{ 'MONTH' | translate }}:</label>
+    <select id="month" [(ngModel)]="selectedMonth">
+      <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="year">{{ 'YEAR' | translate }}:</label>
+    <input id="year" type="number" min="2000" [(ngModel)]="selectedYear" />
+  </div>
+
+  <div class="buttons-container">
+    <button (click)="generateReport('monthly')">{{ 'GENERATE_MONTHLY_REPORT' | translate }}</button>
+    <button (click)="generateReport('yearly')">{{ 'GENERATE_YEARLY_REPORT' | translate }}</button>
+  </div>
+</div>
+
+<div class="reports-list">
+  <h2>{{ 'CREATED_REPORTS' | translate }}</h2>
+  <ul>
+    <li *ngFor="let report of reports">
+      {{ report.name }}
+      <button (click)="downloadReport(report.id)"><mat-icon>download</mat-icon></button>
+      <button (click)="deleteReport(report.id)"><mat-icon>delete</mat-icon></button>
+    </li>
+  </ul>
+</div>

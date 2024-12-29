@@ -1,0 +1,35 @@
+h2 {
+  color: var(--text-color); /* Text color based on theme */
+  font-size: 22px;
+  text-align: center;
+  background-color: var(--button-background); /* Background color based on theme */
+  max-height: 75px;
+}
+
+#button {
+  background-color: transparent; /* Use transparent for no background */
+  color: var(--text-color); /* Text color based on theme */
+  margin-left: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+  #button:hover {
+    background-color: var(--button-hover-background); /* Hover color based on theme */
+  }
+
+#footer {
+  background-color: var(--button-background); /* Background color based on theme */
+  max-height: 75px;
+}
+
+#content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 150px;
+}
+
+#field {
+  width: 100%;
+}

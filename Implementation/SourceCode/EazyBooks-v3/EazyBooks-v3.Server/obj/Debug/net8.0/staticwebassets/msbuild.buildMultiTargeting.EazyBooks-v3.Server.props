@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\EazyBooks-v3.Server.props" />
+</Project>

@@ -1,0 +1,13 @@
+{
+  "entryPoints": [ "src/app" ],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "name": "EazyBooks Documentation",
+  "includeVersion": true,
+  "exclude": [ "**/*.spec.ts", "src/environments/*" ],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "readme": "README.md"
+}

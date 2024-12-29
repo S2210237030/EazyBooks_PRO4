@@ -1,0 +1,31 @@
+<div class="dashboard-container">
+  <main>
+    <div class="content">
+      <div class="year-container">
+        <div class="year">
+          <span>{{ 'YEAR' | translate }} {{ selectedYear }}</span>
+          <button mat-icon-button (click)="openYearDialog()" class="change-year-button">
+            <mat-icon aria-label="Stift">edit</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat" style="--background-color: var(--primary-color);">
+          <span class="label">{{ 'INCOME' | translate }}:</span>
+          <span class="amount">€ {{ totalIncome }}</span>
+        </div>
+        <div class="stat" style="--background-color: var(--secondary-color);">
+          <span class="label">{{ 'EXPENSES' | translate }}:</span>
+          <span class="amount">€ {{ totalExpenses }}</span>
+        </div>
+        <div class="stat" style="--background-color: var(--tertiary-color);">
+          <span class="label">{{ 'BALANCE' | translate }}:</span>
+          <span class="amount">€ {{ saldo }}</span>
+        </div>
+      </div>
+      <div class="chart">
+        <canvas #chartCanvas></canvas>
+      </div>
+    </div>
+  </main>
+</div>

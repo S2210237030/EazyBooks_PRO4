@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
+        "projectName": "EazyBooks-v3.Server",
+        "projectPath": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
+        "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.SpaProxy": {
+              "target": "Package",
+              "version": "[8.*-*, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

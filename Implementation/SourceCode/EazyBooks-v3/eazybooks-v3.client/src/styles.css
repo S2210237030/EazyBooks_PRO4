@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+/* Default Theme (Light Theme) */
+html, body {
+  height: 100%;
+}
+
+:root {
+  --background-color: #fff;
+  --text-color: #333;
+  --text-color-button: #fff;
+  --input-background: #fff;
+  --input-border-color: #ccc;
+  --table-background: #f4f4f4;
+  --sidebar: #f4f4f4;
+  --button-background: #8ab8f5;
+  --button-hover-background: #77a0e0;
+  --button-background-logout: #77a0e0;
+  --button-hover-background-logout: #648ac7;
+  --link-color: #8ab8f5;
+  --link-hover-color: #648ac7;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --categories-badge-background: #e0e0e0;
+  --categories-badge-hover-background: #d1d1d1;
+  --delete-icon-color: #000;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --background-color: #121212;
+  --text-color: #cfcdcd;
+  --text-color-button: #121212;
+  --input-background: #333;
+  --input-border-color: #555;
+  --table-background: #333;
+  --sidebar: #a1a0a0;
+  --button-background: #648ac7;
+  --button-hover-background: #4e73ae;
+  --button-background-logout: #4e73ae;
+  --button-hover-background-logout: #3a5d96;
+  --link-color: #648ac7;
+  --link-hover-color: #4f74ae;
+  --box-shadow: 0 4px 12px rgba(255, 255, 255, 0.0);
+  --categories-badge-background: #333;
+  --categories-badge-hover-background: #555;
+  --delete-icon-color: #e0e0e0;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

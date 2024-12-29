@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>{{ 'REGISTER' | translate }}</h2>
+  <div class="form-group">
+    <label for="email">{{ 'EMAIL' | translate }}</label>
+    <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="password">{{ 'PASSWORD' | translate }}</label>
+    <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+  </div>
+  <button class="btn btn-primary" (click)="signUp()">{{ 'REGISTER' | translate }}</button>
+  <p>{{ 'ALREADY_HAVE_ACCOUNT' | translate }} <a routerLink="/signin">{{ 'SIGN_IN' | translate }}</a></p>
+</div>

@@ -1,0 +1,77 @@
+<button mat-fab (click)="openBudgetDialog()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<h2 style="margin-top: 40px;">{{ 'BUDGETS' | translate }}</h2>
+
+<h3>{{ 'SAVING_GOALS' | translate }}</h3>
+<table>
+  <thead>
+    <tr>
+      <th>{{ 'TITLE' | translate }}</th>
+      <th>{{ 'AMOUNT' | translate }}</th>
+      <th>{{ 'SAVED' | translate }}</th>
+      <th>{{ 'GOAL_DATE' | translate }}</th>
+      <th>{{ 'CREATED_AT' | translate }}</th>
+      <th>{{ 'UPDATED_AT' | translate }}</th>
+      <th>{{ 'CATEGORY' | translate }}</th>
+      <th>{{ 'STATUS' | translate }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let budget of savingBudgets">
+      <td>{{ budget.title }}</td>
+      <td>€ {{ budget.amount | number:'1.2-2' }}</td>
+      <td>€ {{ budget.spent | number:'1.2-2' }}</td>
+      <td>{{ budget.goalDate | date:'dd.MM.yyyy' }}</td>
+      <td>{{ budget.createdAt | date:'dd.MM.yyyy' }}</td>
+      <td>{{ budget.updatedAt | date:'dd.MM.yyyy' }}</td>
+      <td>{{ budget.category }}</td>
+      <td>{{ budget.status }}</td>
+      <td>
+        <button mat-icon (click)="edit(budget)" style="position: inherit; border: none; background: none">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon (click)="delete(budget)" style="position: inherit; border: none; background: none">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>{{ 'SPENDING_BUDGETS' | translate }}</h3>
+<table>
+  <thead>
+    <tr>
+      <th>{{ 'TITLE' | translate }}</th>
+      <th>{{ 'AMOUNT' | translate }}</th>
+      <th>{{ 'SPENT' | translate }}</th>
+      <th>{{ 'CREATED_AT' | translate }}</th>
+      <th>{{ 'UPDATED_AT' | translate }}</th>
+      <th>{{ 'CATEGORY' | translate }}</th>
+      <th>{{ 'STATUS' | translate }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let budget of spendingBudgets">
+      <td>{{ budget.title }}</td>
+      <td>€ {{ budget.amount | number:'1.2-2' }}</td>
+      <td>€ {{ budget.spent | number:'1.2-2' }}</td>
+      <td>{{ budget.createdAt | date:'dd.MM.yyyy' }}</td>
+      <td>{{ budget.updatedAt | date:'dd.MM.yyyy' }}</td>
+      <td>{{ budget.category }}</td>
+      <td>{{ budget.status }}</td>
+      <td>
+        <button mat-icon (click)="edit(budget)" style="position: inherit; border: none; background: none">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon (click)="delete(budget)" style="position: inherit; border: none; background: none">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

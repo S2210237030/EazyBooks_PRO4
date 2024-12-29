@@ -1,0 +1,2 @@
+C:\Users\sandr\source\repos\EazyBooks-v3\eazybooks-v3.client\obj\Debug\eazybooks-v3.client.esproj.CoreCompileInputs.cache
+C:\Users\sandr\OneDrive\Desktop\Git\SS24\EazyBooks\p07\Implementation\SourceCode\EazyBooks-v3\eazybooks-v3.client\obj\Debug\eazybooks-v3.client.esproj.CoreCompileInputs.cache

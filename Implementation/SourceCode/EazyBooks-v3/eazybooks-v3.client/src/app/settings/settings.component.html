@@ -1,0 +1,84 @@
+<div class="settings-container">
+  <h3>{{ 'SETTINGS' | translate }}</h3>
+
+  <form>
+    <div class="setting-group">
+      <label for="theme">{{ 'APP_THEME' | translate }}:</label>
+      <select id="theme" [(ngModel)]="settings.theme" name="theme" (change)="updateAppTheme(settings.theme)">
+        <option value="light">{{ 'THEME_LIGHT' | translate }}</option>
+        <option value="dark">{{ 'THEME_DARK' | translate }}</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label for="language">{{ 'LANGUAGE' | translate }}</label>
+      <select id="language" [(ngModel)]="settings.language" name="language" (change)="changeLanguage(settings.language)">
+        <option value="de">{{ 'LANGUAGE_GERMAN' | translate }}</option>
+        <option value="en">{{ 'LANGUAGE_ENGLISH' | translate }}</option>
+      </select>
+    </div>
+
+    <!--
+  <div class="setting-group">
+    <label for="notifications">{{ 'NOTIFICATIONS' | translate }}:</label>
+    <input type="checkbox" id="notifications" [(ngModel)]="settings.notifications" name="notifications" />
+  </div> -->
+
+    <h4>{{ 'USER_PROFILE' | translate }}</h4>
+
+    <div class="setting-group">
+      <label for="name">{{ 'NAME' | translate }}:</label>
+      <input type="text" id="name" [(ngModel)]="user.name" name="name" (change)="saveSettings()" />
+    </div>
+
+    <div class="setting-group">
+      <label for="email">{{ 'EMAIL_ADDRESS' | translate }}:</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" (change)="saveSettings()" />
+    </div>
+
+    <!-- Password input fields -->
+    <div class="setting-group">
+      <label for="password">{{ 'NEW_PASSWORD' | translate }}:</label>
+      <div class="password-container">
+        <input type="{{ showPassword ? 'text' : 'password' }}"
+               id="password"
+               [(ngModel)]="user.password"
+               name="password"
+               required />
+        <button type="eye" (click)="togglePasswordVisibility()" class="eye-icon">
+          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <label for="confirmPassword">{{ 'CONFIRM_PASSWORD' | translate }}:</label>
+      <div class="password-container">
+        <input type="{{ showConfirmPassword ? 'text' : 'password' }}"
+               id="confirmPassword"
+               [(ngModel)]="user.confirmPassword"
+               name="confirmPassword"
+               required />
+        <button type="eye" (click)="toggleConfirmPasswordVisibility()" class="eye-icon">
+          <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!--<h4>Datenschutz und Sicherheit</h4>-->
+    <!-- Zwei-Faktor-Authentifizierung -->
+    <!--<div class="setting-group">
+    <label for="2fa">Zwei-Faktor-Authentifizierung:</label>
+    <input type="checkbox" id="2fa" [(ngModel)]="settings.twoFactorAuth" name="twoFactorAuth" />
+  </div>-->
+    <!-- Datenschutzerklärung -->
+    <!--<div class="setting-group">
+    <a href="/privacy-policy" target="_blank">Datenschutzerklärung</a>
+  </div>-->
+
+    <div class="setting-group">
+      <button type="submit" (click)="savePassword()">{{ 'SAVE_NEW_PASSWORD' | translate }}</button>
+      <button type="button" id="logout" (click)="logout()">{{ 'LOGOUT' | translate }}</button>
+    </div>
+  </form>
+</div>
