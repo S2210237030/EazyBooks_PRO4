@@ -97,6 +97,14 @@
   "REGISTER": "Register",
   "ALREADY_HAVE_ACCOUNT": "Already have an account?",
 
+  "FORGOT_PASSWORD": "Forgot Password?",
+  "RESET_PASSWORD": "Reset Password",
+  "RESET_PASSWORD_INSTRUCTIONS": "Enter your email address and we will send you a link to reset your password.",
+  "EMAIL_SENT": "An email has been sent to your email address with further instructions.",
+  "BACK_TO_SIGNIN": "to Sign In",
+  "BACK": "Back",
+  "SEND_RESET_LINK": "Send Reset Link",
+
   "ADD_TRANSACTION": "Add Transaction",
   "UPLOAD_IMAGE": "Upload Document",
 

@@ -35,7 +35,6 @@ export class SignInComponent {
       .then((userCredential) => {
         // Sign-in successful
         this.snackBar.open('Sign-in successful!', 'Close', { duration: 3000 });
-        console.log("Sign-in successful!");
         this.router.navigate(['/main']); // Navigate to the main application
       })
       .catch((error) => {

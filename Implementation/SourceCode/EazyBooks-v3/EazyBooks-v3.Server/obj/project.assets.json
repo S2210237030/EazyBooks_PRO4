@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "Microsoft.AspNetCore.SpaProxy/8.0.8": {
+      "Microsoft.AspNetCore.SpaProxy/8.0.11": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -107,10 +107,10 @@
     }
   },
   "libraries": {
-    "Microsoft.AspNetCore.SpaProxy/8.0.8": {
-      "sha512": "T9Zhb64OmOr2nU0iND7br44EfJrQYHpopxvq33l33uZM2Uu/V2GTHKg5OmGMO3XJuUX59fhqvMyXOcFFj6k1pA==",
+    "Microsoft.AspNetCore.SpaProxy/8.0.11": {
+      "sha512": "jwE/cg81t/FTZF1DOKpd90ztzZz6NNNHdo+vLUL4I2IzqL3e8Coo+2eR0KeD4ShbJm+3LNPXH9a6gYv/oP+aQQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.8",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -118,7 +118,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.8.0.8.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.8.0.11.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },
@@ -464,11 +464,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
+      "projectUniqueName": "C:\\Users\\sandr\\OneDrive\\Dokumente\\GitHub\\EazyBooks\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
       "projectName": "EazyBooks-v3.Server",
-      "projectPath": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
+      "projectPath": "C:\\Users\\sandr\\OneDrive\\Dokumente\\GitHub\\EazyBooks\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
       "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\obj\\",
+      "outputPath": "C:\\Users\\sandr\\OneDrive\\Dokumente\\GitHub\\EazyBooks\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",

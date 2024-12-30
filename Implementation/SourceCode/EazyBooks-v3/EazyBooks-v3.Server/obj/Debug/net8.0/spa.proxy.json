@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:4200",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\..\\eazybooks-v3.client",
+"WorkingDirectory": "C:\\Users\\sandr\\OneDrive\\Dokumente\\GitHub\\EazyBooks\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\..\\eazybooks-v3.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

@@ -281,4 +281,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
+  incrementYear() {
+    this.selectedYear++;
+    this.refreshDashboard();
+  }
+
+  decrementYear() {
+    this.selectedYear--;
+    this.refreshDashboard();
+  }
+
+  refreshDashboard() {
+    this.updateDashboardData(this.selectedYear);
+    this.generateChart();
+  }
 }

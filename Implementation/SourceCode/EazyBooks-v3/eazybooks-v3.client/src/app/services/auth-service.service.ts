@@ -125,4 +125,14 @@ export class AuthService {
       }
     });
   }
+
+  /**
+   * Sends a password reset email to the user's email address.
+   *
+   * @param email - The email address for the password reset.
+   * @returns A promise that resolves when the email is sent.
+   */
+  forgotPassword(email: string): Promise<void> {
+    return this.afAuth.sendPasswordResetEmail(email);
+  }
 }

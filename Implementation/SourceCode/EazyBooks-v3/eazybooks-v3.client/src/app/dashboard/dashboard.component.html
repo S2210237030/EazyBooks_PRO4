@@ -4,9 +4,14 @@
       <div class="year-container">
         <div class="year">
           <span>{{ 'YEAR' | translate }} {{ selectedYear }}</span>
-          <button mat-icon-button (click)="openYearDialog()" class="change-year-button">
-            <mat-icon aria-label="Stift">edit</mat-icon>
-          </button>
+          <div class="arrow-buttons">
+            <button mat-icon-button (click)="incrementYear()" id="buttonUp">
+              <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+            <button mat-icon-button (click)="decrementYear()" id="buttonDown">
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
       <div class="stats">

@@ -59,6 +59,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 registerLocaleData(localeDe);
 
@@ -80,7 +81,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsComponent,
     TransactionDialogComponent,
     BudgetDialogComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

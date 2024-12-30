@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EazyBooks-v3.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c2806afb7392e7fbe569f466efeff05402c1c65")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c9023d4bfdd9b77b2a6618b98f8371dfd6b0d96")]
 [assembly: System.Reflection.AssemblyProductAttribute("EazyBooks-v3.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EazyBooks-v3.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -56,29 +56,30 @@ main {
     margin-right: 10px;
   }
 
-.change-year-button {
+#buttonUp {
   background-color: var(--button-background); /* Hintergrundfarbe für den Button */
   color: var(--text-color);
-  margin-left: 8px;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 4px;
+  height: 30px;
+  width: 30px;
   cursor: pointer;
-  overflow: hidden;
 }
 
-  .change-year-button:hover {
-    background-color: var(--button-hover-background); /* Hover-Farbe für den Button */
-  }
+#buttonDown {
+  background-color: var(--button-background); /* Hintergrundfarbe für den Button */
+  color: var(--text-color);
+  margin-left: 4px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
 
 .mat-icon {
-  font-size: 20px;
+  margin-left: -5px;
+  margin-top: -5px;
+  font-size: 18px;
   background-size: contain;
   background-position: center;
-  background-repeat: no-repeat;
 }
 
 .stats {
@@ -124,3 +125,5 @@ main {
   border-radius: 8px;
   box-shadow: var(--box-shadow); /* Schatten für das Diagramm */
 }
+
+

@@ -60,16 +60,16 @@ export class AppComponent implements OnInit {
 
     // Check if user is logged in and navigate accordingly
     this.authService.isUserLoggedIn().subscribe(isLoggedIn => {
-      /*this.isLoggedIn = isLoggedIn;
+      this.isLoggedIn = isLoggedIn;
       if (isLoggedIn) {
         console.log("isLoggedIn");
         this.router.navigate(['/main']);
         this.loadPreferences(); // Load user preferences if logged in
       } else {
         this.router.navigate(['/signin']);
-      }*/
-      this.isLoggedIn = false; // always navigate to signin page
-      this.router.navigate(['/signin']); 
+      }
+      /*this.isLoggedIn = false; // always navigate to signin page
+      this.router.navigate(['/signin']);*/ 
     });
   }
 

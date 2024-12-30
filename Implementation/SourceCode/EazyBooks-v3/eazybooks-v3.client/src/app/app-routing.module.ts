@@ -5,6 +5,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthGuard } from './services/auth.guard';
 import { MainSiteComponent } from './main-site/main-site.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 /**
  * Defines the routes for the application.
@@ -20,6 +21,11 @@ const routes: Routes = [
    * Route for the sign-up page.
    */
   { path: 'signup', component: SignUpComponent },
+
+  /**
+   * Route for the forgot password page.
+   */
+  { path: 'forgotpassword', component: ForgotPasswordComponent },
 
   /**
    * Route for the main site, protected by the AuthGuard.

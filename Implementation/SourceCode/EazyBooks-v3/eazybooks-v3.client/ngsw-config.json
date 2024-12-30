@@ -24,6 +24,37 @@
           "/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
         ]
       }
+    },
+    {
+      "name": "offline-page",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/offline.html"
+        ]
+      }
     }
-  ]
+  ],
+  "dataGroups": [
+    {
+      "name": "api-calls",
+      "urls": [
+        "https://eazybooks-d5a17.firebaseio.com/**",
+        "https://firestore.googleapis.com/v1/projects/eazybooks-d5a17/databases/(default)/documents/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "24h",
+        "strategy": "freshness"
+      }
+    }
+  ],
+  "navigationFallback": {
+    "index": "/index.html",
+    "rewrite": "/assets/offline.html",
+    "exclude": [
+      "/api/*",
+      "/admin/*"
+    ]
+  }
 }

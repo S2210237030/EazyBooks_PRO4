@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6muUOqrQZm9gcJ4LEfXHLurRy6WqUUj63pbqiv51uHCpxnG0qADadBKOFbowUpKlqQwpy2gCo8wspQms4TeGMw==",
+  "dgSpecHash": "ERB6mgJd7vWpLQHbjUNPYvz1yVK+ToFJnB7HQwA4QatHL0XcOUalvpJLib+5rYiVwqcWrIywRdNWVnXbLnRRHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sandr\\OneDrive\\Desktop\\Git\\SS24\\EazyBooks\\p07\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
+  "projectFilePath": "C:\\Users\\sandr\\OneDrive\\Dokumente\\GitHub\\EazyBooks\\Implementation\\SourceCode\\EazyBooks-v3\\EazyBooks-v3.Server\\EazyBooks-v3.Server.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\sandr\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.8\\microsoft.aspnetcore.spaproxy.8.0.8.nupkg.sha512",
+    "C:\\Users\\sandr\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.11\\microsoft.aspnetcore.spaproxy.8.0.11.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
