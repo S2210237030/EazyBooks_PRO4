@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { YearDialogComponent } from '../year-dialog/year-dialog.component';
 import { TransactionServiceComponent } from '../transaction-service/transaction-service.component';
 import Chart from 'chart.js/auto';
+import firebase from 'firebase/compat/app';
 
 /**
  * The `DashboardComponent` class is responsible for displaying a dashboard that shows 
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   /**
    * The year selected for viewing financial data.
    */
-  selectedYear = 2024;
+  selectedYear = 2025;
 
   /**
    * ViewChild reference for the chart canvas element.

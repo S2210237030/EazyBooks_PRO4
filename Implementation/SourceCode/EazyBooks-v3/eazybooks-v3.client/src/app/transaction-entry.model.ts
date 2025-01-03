@@ -1,7 +1,7 @@
 /**
  * Represents a financial transaction entry with details
  * such as document number, date, gross and net amounts,
- * description, category, and image path.
+ * description, category, image path, and recurring transaction information.
  */
 export class TransactionEntry {
   public documentNumber: string;
@@ -13,6 +13,11 @@ export class TransactionEntry {
   public incomeExpenses: string;
   public dateInMillis: number;
   public documentName: string;
+
+  // New fields for recurring transactions
+  public repeatInterval: string; // e.g. "monthly", "yearly", "quarterly"
+  public dayOfMonth?: number; // The specific day of the month for monthly recurrence (if applicable)
+  public quarter?: string; // The specific quarter (optional)
 
   /**
    * Constructor to initialize a TransactionEntry object.
@@ -26,6 +31,9 @@ export class TransactionEntry {
    * @param incomeExpenses - Indicates whether the transaction is income or expense.
    * @param dateInMillis - The date in milliseconds since epoch.
    * @param documentName - Optional name of the document associated with the transaction.
+   * @param repeatInterval - The period for recurrence (e.g. "monthly", "yearly", "quarterly").
+   * @param dayOfMonth - Optional: the day of the month for monthly recurrence (1-31).
+   * @param quarter - Optional: the quarter for quarterly recurrence (1-4).
    */
   constructor(
     documentNumber: string,
@@ -36,7 +44,10 @@ export class TransactionEntry {
     category: string,
     incomeExpenses: string,
     dateInMillis: number,
-    documentName: string = ''
+    documentName: string = '',
+    repeatInterval: string = '',
+    dayOfMonth?: number,
+    quarter?: string
   ) {
     this.documentNumber = documentNumber;
     this.date = date;
@@ -47,6 +58,9 @@ export class TransactionEntry {
     this.incomeExpenses = incomeExpenses;
     this.dateInMillis = dateInMillis;
     this.documentName = documentName;
+    this.repeatInterval = repeatInterval;
+    this.dayOfMonth = dayOfMonth;
+    this.quarter = quarter; // Initialize quarter
   }
 
   /** 
@@ -64,7 +78,10 @@ export class TransactionEntry {
       category: this.category,
       incomeExpenses: this.incomeExpenses,
       dateInMillis: this.dateInMillis,
-      imagePath: this.documentName
+      imagePath: this.documentName,
+      repeatInterval: this.repeatInterval,
+      dayOfMonth: this.dayOfMonth,
+      quarter: this.quarter  // Include quarter
     };
   }
 
@@ -84,7 +101,10 @@ export class TransactionEntry {
       obj.category,
       obj.incomeExpenses,
       obj.dateInMillis,
-      obj.documentName
+      obj.documentName,
+      obj.repeatInterval,
+      obj.dayOfMonth,
+      obj.quarter  // Handle quarter
     );
   }
 
@@ -96,7 +116,7 @@ export class TransactionEntry {
   toString(): string {
     const formattedDate = new Date(this.dateInMillis).toLocaleDateString('en-US');
     const formattedGross = this.gross.toFixed(2);
-    return `${this.documentNumber},${formattedDate},${formattedGross},${this.net},${this.description},${this.category},${this.incomeExpenses},${this.dateInMillis},${this.documentName}`;
+    return `${this.documentNumber},${formattedDate},${formattedGross},${this.net},${this.description},${this.category},${this.incomeExpenses},${this.dateInMillis},${this.documentName},${this.repeatInterval},${this.dayOfMonth ?? ''},${this.quarter ?? ''}`;
   }
 
   /** 
@@ -116,7 +136,10 @@ export class TransactionEntry {
       fields[5],
       fields[6],
       parseInt(fields[7], 10),
-      fields[8] // documentName
+      fields[8], // documentName
+      fields[9], // repeatInterval
+      fields[10] ? parseInt(fields[10], 10) : undefined, // dayOfMonth
+      fields[11] || undefined // quarter
     );
   }
 
@@ -242,5 +265,38 @@ export class TransactionEntry {
    */
   getImagePath(): string {
     return this.documentName;
+  }
+
+  /**
+   * Update the next due date for a recurring transaction based on its repeat interval.
+   */
+  updateNextDueDate(): void {
+    const currentDate = new Date(this.dateInMillis);
+    let nextDate: Date;
+
+    // Initialisiere nextDate basierend auf dem Intervall
+    if (this.repeatInterval === 'monthly') {
+      nextDate = new Date(currentDate.setMonth(currentDate.getMonth() + 1));
+    } else if (this.repeatInterval === 'yearly') {
+      nextDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1));
+    } else if (this.repeatInterval === 'quarterly' && this.quarter) {
+      // Calculate the next quarter (for example: add 3 months for the next quarter)
+      const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
+      let currentQuarterIndex = quarters.indexOf(this.quarter);
+      currentQuarterIndex = (currentQuarterIndex + 1) % 4; // Move to the next quarter
+      this.quarter = quarters[currentQuarterIndex];
+      nextDate = new Date(currentDate.setMonth(currentDate.getMonth() + 3)); // Move 3 months ahead
+    } else {
+      console.error('Invalid repeat interval');
+      return;
+    }
+
+    // Wenn ein dayOfMonth gesetzt ist, dann stelle sicher, dass der Tag im nächsten Monat/Jahr berücksichtigt wird
+    if (this.dayOfMonth && this.repeatInterval === 'monthly') {
+      nextDate.setDate(this.dayOfMonth);
+    }
+
+    // Die aktualisierte Zeit für die Transaktion setzen
+    this.dateInMillis = nextDate.getTime();
   }
 }

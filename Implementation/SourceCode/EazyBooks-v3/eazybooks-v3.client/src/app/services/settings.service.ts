@@ -23,8 +23,26 @@ export class SettingsService {
    * @returns {Observable<any>} Observable containing the settings
    */
   getSettings(): Observable<any> {
+    //return this.authService.getCurrentUserId().pipe(
+    //  switchMap(userId => this.firestore.collection(this.settingsCollection).doc(userId).valueChanges())
+    //);
     return this.authService.getCurrentUserId().pipe(
-      switchMap(userId => this.firestore.collection(this.settingsCollection).doc(userId).valueChanges())
+      switchMap(userId => {
+        // Zugriff auf das Dokument des Benutzers in der 'users' Collection
+        return this.firestore.collection(this.settingsCollection).doc(userId).valueChanges();
+      })
+    );
+  }
+
+  getUserData(): Observable<any> {
+    return this.authService.getCurrentUserId().pipe(
+      switchMap(userId => {
+        if (!userId) {
+          throw new Error('User not authenticated');
+        }
+        // Holt die Benutzerdaten aus der "users"-Sammlung, basierend auf der UID
+        return this.firestore.collection('users').doc(userId).valueChanges();
+      })
     );
   }
 

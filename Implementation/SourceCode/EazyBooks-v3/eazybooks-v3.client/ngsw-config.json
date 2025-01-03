@@ -5,13 +5,19 @@
     {
       "name": "app",
       "installMode": "prefetch",
+      "updateMode": "prefetch",
       "resources": {
         "files": [
           "/favicon.ico",
           "/index.html",
           "/manifest.webmanifest",
-          "/*.css",
-          "/*.js"
+          "/styles.*.css",
+          "/main.*.js",
+          "/polyfills.*.js",
+          "/runtime.*.js",
+          "/vendor.*.js",
+          "/*.woff2",
+          "/*.json"
         ]
       }
     },
@@ -30,7 +36,9 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/assets/offline.html"
+          "/assets/offline.html",
+          "/assets/images/offline.png",
+          "/assets/css/offline.css"
         ]
       }
     }
@@ -45,16 +53,28 @@
       "cacheConfig": {
         "maxSize": 100,
         "maxAge": "24h",
-        "strategy": "freshness"
+        "timeout": "10s",
+        "strategy": "performance"
       }
     }
   ],
   "navigationFallback": {
     "index": "/index.html",
     "rewrite": "/assets/offline.html",
+    "timeout": "10s",
     "exclude": [
       "/api/*",
       "/admin/*"
+    ],
+    "fallbacks": [
+      {
+        "rewrite": "/assets/404.html",
+        "status": 404
+      },
+      {
+        "rewrite": "/assets/500.html",
+        "status": 500
+      }
     ]
   }
 }

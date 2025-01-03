@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 /**
  * The `MainSiteComponent` class is responsible for managing the main interface of the application.
@@ -24,6 +26,14 @@ export class MainSiteComponent implements OnInit {
    */
   ngOnInit() {
     console.log('MainSiteComponent ngOnInit called');
+
+    const user = firebase.auth().currentUser;
+
+    if (user) {
+      console.log('Authenticated User UID:', user.uid);
+    } else {
+      console.log('User is not authenticated');
+    }
   }
 
   /**

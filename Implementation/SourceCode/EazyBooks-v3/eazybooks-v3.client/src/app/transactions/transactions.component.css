@@ -2,8 +2,8 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-size: cover;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--background-color); /* Background color based on theme */
+  color: var(--text-color); /* Text color based on theme */
 }
 
 .app-container {
@@ -13,7 +13,7 @@ body {
 }
 
 .transactions-container {
-  width: 700px;
+  width: 100%;
   margin-top: 20px;
   overflow-y: auto;
   justify-content: center;
@@ -27,12 +27,12 @@ body {
 
 .header-item h2 {
   font-size: 40px;
-  color: var(--text-color); /* Text color based on theme */
+  color: var(--text-color); /* Header color based on theme */
 }
 
 .header-item h3 {
   font-size: 34px;
-  color: var(--text-color); /* Text color based on theme */
+  color: var(--text-color); /* Header color based on theme */
 }
 
 .add-transaction {
@@ -52,7 +52,53 @@ body {
     object-fit: contain;
   }
 
-button {
+  button:hover {
+    background-color: var(--button-hover-background);
+  }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  background-color: var(--background-color);
+  table-layout: fixed;
+}
+
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--input-border-color); /* Border color based on theme */
+  word-wrap: break-word;
+}
+
+th {
+  background-color: var(--table-background); /* Background color based on theme */
+}
+
+td img {
+  max-width: 100px;
+  height: auto;
+}
+
+.month-section {
+  margin-bottom: 2rem;
+}
+
+  .month-section h2 {
+    margin-top: 0;
+    color: var(--text-color); /* Color based on theme */
+  }
+
+  .month-section p {
+    margin: 0.5rem 0;
+    color: var(--text-color); /* Color based on theme */
+  }
+
+h1 {
+  text-align: center;
+  color: var(--text-color); /* Color based on theme */
+}
+.add-button {
   position: fixed;
   bottom: 77px;
   right: 20px;
@@ -63,45 +109,51 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  z-index: 1000;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--background-color);
+.mat-icon {
+  font-size: 24px;
+  color: var(--text-color);
 }
 
-th, td {
-  padding: 0.5rem;
+.custom-menu {
+  position: fixed;
+  bottom: 135px; /* Position des Menüs über dem Button */
+  right: 20px; /* Gleicher Abstand wie der Button */
+  background-color: var(--table-background);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: var(--text-color);
   text-align: left;
-  border-bottom: 1px solid var(--input-border-color); /* Border color based on theme */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 8px; /* Abgerundete Ecken hinzufügen */
 }
 
-th {
-  background-color: var(--table-background); /* Header background color based on theme */
-}
-
-td img {
-  max-width: 100px;
-  height: auto;
-}
-
-.month-section {
-  margin-bottom: 2rem;
-  margin-top: 40px;
-}
-
-  .month-section h2 {
-    margin-top: 0;
-    color: var(--text-color); /* Text color based on theme */
+  .menu-item:hover {
+    background-color: var(--button-background);
+    border-radius: 8px; /* Abgerundete Ecken auch beim Hover */
   }
 
-  .month-section p {
-    margin: 0.5rem 0;
-    color: var(--text-color); /* Text color based on theme */
+
+@media (max-width: 768px) {
+  table {
+    font-size: 12px; /* Reduces font size on smaller screens */
   }
 
-h1 {
-  text-align: center;
-  color: var(--text-color); /* Text color based on theme */
+  th, td {
+    padding: 0.4rem; /* Less padding for smaller screens */
+  }
 }

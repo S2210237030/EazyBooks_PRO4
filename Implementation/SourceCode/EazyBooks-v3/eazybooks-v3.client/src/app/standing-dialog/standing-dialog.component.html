@@ -1,0 +1,74 @@
+<body>
+  <h2 mat-dialog-title style="color: var(--text-color-button);">{{ 'ADD_STANDING' | translate }}</h2>
+  <div mat-dialog-content>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'DATE' | translate }}</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="transaction.date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'AMOUNT' | translate }}</mat-label>
+      <input matInput type="number" [(ngModel)]="transaction.gross" (input)="calculateNetAmount()" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'DESCRIPTION' | translate }}</mat-label>
+      <input matInput type="text" [(ngModel)]="transaction.description" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'CATEGORY' | translate }}</mat-label>
+      <mat-select [(ngModel)]="transaction.category" required>
+        <mat-option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'TYPE' | translate }}</mat-label>
+      <mat-select [(ngModel)]="transaction.incomeExpenses" required>
+        <mat-option value="income">{{ 'INCOME' | translate }}</mat-option>
+        <mat-option value="expense">{{ 'EXPENSE' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- New Fields for Standing Orders -->
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'REPEAT_INTERVAL' | translate }}</mat-label>
+      <mat-select [(ngModel)]="transaction.repeatInterval" required>
+        <mat-option value="monthly">{{ 'MONTHLY' | translate }}</mat-option>
+        <mat-option value="quarterly">{{ 'QUARTERLY' | translate }}</mat-option>
+        <mat-option value="yearly">{{ 'YEARLY' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="transaction.repeatInterval === 'monthly'">
+      <mat-label>{{ 'DAY_OF_MONTH' | translate }}</mat-label>
+      <input matInput type="number" [(ngModel)]="transaction.dayOfMonth" min="1" max="31" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="transaction.repeatInterval === 'quarterly'">
+      <mat-label>{{ 'QUARTER' | translate }}</mat-label>
+      <mat-select [(ngModel)]="transaction.quarter" required>
+        <mat-option *ngFor="let quarter of quarterlyOptions" [value]="quarter.value">
+          {{ quarter.name | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div id="imageUpload">
+      <label for="fileUpload" class="upload-button">{{ 'UPLOAD_IMAGE' | translate }}</label>
+      <input type="file" id="fileUpload" (change)="onFileChange($event)" hidden>
+      <span *ngIf="imageName" class="image-name">{{ imageName }}</span>
+    </div>
+
+  </div>
+  <div mat-dialog-actions id="footer">
+    <button mat-button (click)="closeDialog()" id="button" style="background-color: #8ab8f5">{{ 'CANCEL' | translate }}</button>
+    <button mat-button (click)="addTransaction()" id="button" cdkFocusInitial>{{ 'ADD' | translate }}</button>
+  </div>
+</body>

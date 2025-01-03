@@ -26,15 +26,24 @@ export class BudgetService {
   addBudget(budget: BudgetEntry): Observable<void> {
     const id = this.firestore.createId();
     budget.id = id;
-    return from(this.firestore.collection('budgets').doc(id).set({
-      ...budget,
-      goalDate: new Date(budget.goalDate).toISOString(),
-      createdAt: new Date(budget.createdAt).toISOString(),
-      updatedAt: new Date(budget.updatedAt).toISOString(),
-      goalDateInMillis: new Date(budget.goalDate).getTime(),
-      createdAtInMillis: new Date(budget.createdAt).getTime(),
-      updatedAtInMillis: new Date(budget.updatedAt).getTime()
-    }));
+    return from(this.authService.getCurrentUser()).pipe(
+      switchMap((user: firebase.User | null) => {
+        if (user) {
+          budget.userId = user.uid;  // Setze die userId des aktuellen Benutzers
+          return from(this.firestore.collection('budgets').doc(id).set({
+            ...budget,
+            goalDate: new Date(budget.goalDate).toISOString(),
+            createdAt: new Date(budget.createdAt).toISOString(),
+            updatedAt: new Date(budget.updatedAt).toISOString(),
+            goalDateInMillis: new Date(budget.goalDate).getTime(),
+            createdAtInMillis: new Date(budget.createdAt).getTime(),
+            updatedAtInMillis: new Date(budget.updatedAt).getTime()
+          }));
+        } else {
+          throw new Error('User not authenticated');
+        }
+      })
+    );
   }
 
   /**
@@ -45,14 +54,13 @@ export class BudgetService {
    * @returns An observable that completes when the budget is updated.
    */
   updateBudget(id: string, budget: BudgetEntry): Observable<void> {
+    budget.updatedAt = new Date().toISOString();
+    budget.updatedAtInMillis = new Date().getTime();
+
     return from(this.firestore.collection('budgets').doc(id).update({
       ...budget,
-      goalDate: new Date(budget.goalDate).toISOString(),
-      createdAt: new Date(budget.createdAt).toISOString(),
-      updatedAt: new Date(budget.updatedAt).toISOString(),
-      goalDateInMillis: new Date(budget.goalDate).getTime(),
-      createdAtInMillis: new Date(budget.createdAt).getTime(),
-      updatedAtInMillis: new Date(budget.updatedAt).getTime()
+      updatedAt: budget.updatedAt,
+      updatedAtInMillis: budget.updatedAtInMillis
     }));
   }
 
@@ -76,10 +84,11 @@ export class BudgetService {
       switchMap((user: firebase.User | null) => {
         if (user) {
           return this.firestore.collection<BudgetEntry>('budgets', ref =>
-            ref.orderBy('goalDateInMillis', 'desc')
+            ref.where('userId', '==', user.uid)  // Nur Budgets für den aktuellen Benutzer abrufen
+              .orderBy('goalDateInMillis', 'desc')
           ).valueChanges();
         } else {
-          return new Observable<BudgetEntry[]>(); // Return an empty observable if no user is logged in
+          return new Observable<BudgetEntry[]>(); // Rückgabe eines leeren Observables, wenn kein Benutzer angemeldet ist
         }
       })
     );

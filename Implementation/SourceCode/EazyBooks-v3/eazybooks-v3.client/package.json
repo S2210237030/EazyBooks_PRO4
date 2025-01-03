@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "chart.js": "^4.4.4",
+    "crypto-js": "^4.2.0",
     "file-saver": "^2.0.5",
     "firebase": "^10.13.0",
     "html2canvas": "^1.4.1",

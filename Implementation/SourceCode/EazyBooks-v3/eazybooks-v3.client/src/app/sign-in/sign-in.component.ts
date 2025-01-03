@@ -32,10 +32,28 @@ export class SignInComponent {
    */
   signIn() {
     this.authService.signIn(this.email, this.password)
-      .then((userCredential) => {
-        // Sign-in successful
-        this.snackBar.open('Sign-in successful!', 'Close', { duration: 3000 });
-        this.router.navigate(['/main']); // Navigate to the main application
+      .then(async (userCredential) => {
+        try {
+          // Token nach der Anmeldung abrufen
+          const token = await userCredential!.user?.getIdToken();  // Warten auf das Token
+
+          if (token) {
+            // Token in einem HttpOnly-Cookie speichern
+            this.authService.setTokenInHttpOnlyCookie(token);
+            this.snackBar.open('Sign-in successful!', 'Close', { duration: 3000 });
+            this.router.navigate(['/main']); // Navigate to main application route
+          } else {
+            throw new Error("Token could not be retrieved.");
+          }
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            // Wenn es sich um ein Error-Objekt handelt, auf die message zugreifen
+            this.snackBar.open(error.message, 'Close', { duration: 5000 });
+          } else {
+            // Wenn es sich nicht um ein Error-Objekt handelt, zeige eine allgemeine Fehlermeldung an
+            this.snackBar.open('An unknown error occurred', 'Close', { duration: 5000 });
+          }
+        }
       })
       .catch((error) => {
         // Handle errors here, such as incorrect credentials

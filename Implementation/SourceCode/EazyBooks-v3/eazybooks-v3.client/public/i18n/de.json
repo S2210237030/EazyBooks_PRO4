@@ -89,6 +89,20 @@
   "REVENUE": "Umsatz",
   "COSTS": "Kosten",
 
+  "TRANSACTION": "Transaktion",
+  "STANDING": "Dauerauftrag",
+  "REPEAT_INTERVAL": "Intervall",
+  "DAY_OF_MONTH": "Tag des Monats",
+  "MONTHLY": "Monatlich",
+  "QUARTERLY": "Quartalsweise",
+  "YEARLY": "Jährlich",
+  "QUARTER": "Quartal",
+
+  "QUARTER_1": "Q1 (Jänner - März)",
+  "QUARTER_2": "Q2 (April - Juni)",
+  "QUARTER_3": "Q3 (Juli - September)",
+  "QUARTER_4": "Q4 (Oktober - Dezember)",
+
   "SIGN_IN": "Anmelden",
   "EMAIL": "Email",
   "PASSWORD": "Passwort",
@@ -106,6 +120,7 @@
   "SEND_RESET_LINK": "Link senden",
 
   "ADD_TRANSACTION": "Transaktion hinzufügen",
+  "ADD_STANDING": "Dauerauftrag hinzufügen",
   "UPLOAD_IMAGE": "Dokument hochladen",
 
   "NUMBER": "Nr.",

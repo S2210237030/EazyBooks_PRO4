@@ -89,6 +89,20 @@
   "REVENUE": "Revenue",
   "COSTS": "Costs",
 
+  "TRANSACTION": "Transaction",
+  "STANDING": "Standing Order",
+  "REPEAT_INTERVAL": "Repeat Interval",
+  "DAY_OF_MONTH": "Day of Month",
+  "MONTHLY": "Monthly",
+  "QUARTERLY": "Quarterly",
+  "YEARLY": "Yearly",
+  "QUARTER": "Quarter",
+
+  "QUARTER_1": "Q1 (January - March)",
+  "QUARTER_2": "Q2 (April - June)",
+  "QUARTER_3": "Q3 (July - September)",
+  "QUARTER_4": "Q4 (October - December)",
+
   "SIGN_IN": "Sign In",
   "EMAIL": "Email",
   "PASSWORD": "Password",
@@ -106,6 +120,7 @@
   "SEND_RESET_LINK": "Send Reset Link",
 
   "ADD_TRANSACTION": "Add Transaction",
+  "ADD_STANDING": "Add Standing Order",
   "UPLOAD_IMAGE": "Upload Document",
 
   "NUMBER": "No.",

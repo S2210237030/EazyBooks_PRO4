@@ -67,4 +67,10 @@ export interface BudgetEntry {
    * Type of the budget, which can be 'saving' or 'spending'.
    */
   type: 'saving' | 'spending';
+
+  /**
+   * User ID associated with the budget entry.
+   * This ensures that budgets are only visible to the user who created them.
+   */
+  userId?: string;
 }

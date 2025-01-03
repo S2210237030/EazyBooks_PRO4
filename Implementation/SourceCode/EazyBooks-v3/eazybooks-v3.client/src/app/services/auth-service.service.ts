@@ -31,9 +31,33 @@ export class AuthService {
    * @param password - The password of the user.
    * @returns A promise that resolves with the user credential.
    */
-  signIn(email: string, password: string): Promise<firebase.auth.UserCredential> {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+  signIn(email: string, password: string): Promise<firebase.auth.UserCredential | undefined> {
+    //return this.afAuth.signInWithEmailAndPassword(email, password);
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // Firebase Token (JWT) erhalten
+        return userCredential.user?.getIdToken().then((token: string) => {
+          // Token sicher in einem HttpOnly-Cookie speichern
+          this.setTokenInHttpOnlyCookie(token);
+          return userCredential;  // Erfolgreiche Anmeldung zurückgeben
+        });
+      });
   }
+
+  // Token sicher in einem HttpOnly-Cookie speichern
+  setTokenInHttpOnlyCookie(token: string) {
+    // Achtung: HttpOnly und Secure sollten gesetzt werden, um Sicherheit zu gewährleisten
+    document.cookie = `token=${token}; HttpOnly; Secure; SameSite=Strict; path=/`;
+  }
+
+  // Token aus dem Cookie extrahieren
+  getTokenFromCookie(): string | null {
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+    return token ? token.split('=')[1] : null;
+  }
+
+
+
 
   /**
    * Registers a new user with email and password.

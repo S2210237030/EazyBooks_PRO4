@@ -18,6 +18,10 @@ interface ChartData {
   chartData: number[];
 }
 
+interface CounterDocument {
+  counter: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,59 +36,75 @@ export class TransactionServiceComponent {
    * @returns An observable that completes when the transaction is added.
    */
   addTransaction(transaction: TransactionEntry): Observable<void> {
-    // Count existing transactions to set documentNumber
+    // Fetch the current user and update the user's document counter
     return from(this.authService.getCurrentUser()).pipe(
       switchMap(user => {
         if (user) {
-          // Count transactions
-          return from(this.firestore.collection('transactions').get()).pipe(
-            map(querySnapshot => {
-              // Set documentNumber based on existing transactions count
-              const documentNumber = querySnapshot.size + 1;
-              transaction.documentNumber = documentNumber.toString();
-              return transaction;
-            }),
-            switchMap(updatedTransaction => {
-              // Ensure dateInMillis is set
-              if (!updatedTransaction.dateInMillis) {
-                updatedTransaction.dateInMillis = new Date(updatedTransaction.date).getTime();
+          const userId = user.uid;
+          const counterDocRef = this.firestore.collection('transactionCounters').doc<CounterDocument>(userId);
+
+          // Retrieve the user's counter document, increment it, and use it as documentNumber
+          return from(counterDocRef.get()).pipe(
+            switchMap(counterDoc => {
+              let currentCounter = 0;
+              if (counterDoc.exists) {
+                const data = counterDoc.data();
+                currentCounter = data?.counter || 0;
               }
 
-              // Check for required fields
-              if (!updatedTransaction.date || updatedTransaction.gross == null || updatedTransaction.net == null || !updatedTransaction.description || !updatedTransaction.incomeExpenses) {
-                return new Observable<void>(observer => {
-                  observer.error(new Error('Transaction has undefined or null fields'));
-                });
-              }
+              // Increment the counter for the current user
+              const documentNumber = currentCounter + 1;
 
-              // Prepare transaction data for Firestore
-              const transactionData = {
-                documentNumber: updatedTransaction.documentNumber,
-                date: new Date(updatedTransaction.date).toISOString(),
-                gross: updatedTransaction.gross,
-                net: updatedTransaction.net,
-                description: updatedTransaction.description,
-                category: updatedTransaction.category,
-                incomeExpenses: updatedTransaction.incomeExpenses,
-                dateInMillis: updatedTransaction.dateInMillis,
-                documentName: updatedTransaction.documentName || '' // Ensure documentName is never undefined
-              };
+              // Update the user's counter in Firestore
+              return from(counterDocRef.set({ counter: documentNumber }, { merge: true })).pipe(
+                switchMap(() => {
+                  // Set the documentNumber for the transaction
+                  transaction.documentNumber = documentNumber.toString();
+                  // Ensure dateInMillis is set
+                  if (!transaction.dateInMillis) {
+                    transaction.dateInMillis = new Date(transaction.date).getTime();
+                  }
 
-              // Log transaction data for debugging
-              console.log('Transaction Data:', transactionData);
+                  // Check for required fields
+                  if (!transaction.date || transaction.gross == null || transaction.net == null || !transaction.description || !transaction.incomeExpenses) {
+                    return new Observable<void>(observer => {
+                      observer.error(new Error('Transaction has undefined or null fields'));
+                    });
+                  }
 
-              // Save transaction to Firestore
-              return from(this.firestore.collection('transactions').doc(updatedTransaction.documentNumber).set(transactionData)).pipe(
-                tap(() => console.log('Transaction successfully saved:', transactionData)),
-                catchError(error => {
-                  console.error('Error saving transaction:', error);
-                  return throwError(() => new Error('Failed to save transaction in Firestore'));
+                  const documentId = `${userId}_${transaction.documentNumber}`;
+
+                  // Prepare transaction data for Firestore
+                  const transactionData = {
+                    documentNumber: transaction.documentNumber,
+                    date: new Date(transaction.date).toISOString(),
+                    gross: transaction.gross,
+                    net: transaction.net,
+                    description: transaction.description,
+                    category: transaction.category,
+                    incomeExpenses: transaction.incomeExpenses,
+                    dateInMillis: transaction.dateInMillis,
+                    documentName: transaction.documentName || '',
+                    userId: userId
+                  };
+
+                  // Log transaction data for debugging
+                  console.log('Transaction Data:', transactionData);
+
+                  // Save transaction to Firestore
+                  return from(this.firestore.collection('transactions').doc(documentId).set(transactionData)).pipe(
+                    tap(() => console.log('Transaction successfully saved:', transactionData)),
+                    catchError(error => {
+                      console.error('Error saving transaction:', error);
+                      return throwError(() => new Error('Failed to save transaction in Firestore'));
+                    })
+                  );
                 })
               );
             }),
             catchError(error => {
-              console.error('Error counting transactions:', error);
-              return throwError(() => new Error('Failed to count transactions'));
+              console.error('Error retrieving or updating counter:', error);
+              return throwError(() => new Error('Failed to retrieve or update transaction counter'));
             })
           );
         } else {
@@ -99,31 +119,75 @@ export class TransactionServiceComponent {
     );
   }
 
+
   /**
    * Deletes a transaction from the Firestore database by its document number.
    * @param documentNumber - The document number of the transaction to delete.
    * @returns An observable that completes when the transaction is deleted.
    */
   deleteTransaction(documentNumber: string): Observable<void> {
-    return from(this.firestore.collection('transactions').doc(documentNumber).delete()).pipe(
-      tap(() => console.log(`Transaction ${documentNumber} deleted successfully`)),
+    return from(this.authService.getCurrentUser()).pipe(
+      switchMap(user => {
+        if (user) {
+          const userId = user.uid;
+          // Erstelle den zusammengesetzten documentId
+          const documentId = `${userId}_${documentNumber}`;
+
+          // Lösche die Transaktion anhand des zusammengesetzten documentId
+          return from(this.firestore.collection('transactions').doc(documentId).delete()).pipe(
+            switchMap(() => {
+              console.log(`Transaction ${documentId} deleted successfully`);
+
+              // Überprüfe, ob noch Transaktionen für den Benutzer vorhanden sind
+              const transactionsRef = this.firestore.collection('transactions', ref =>
+                ref.where('userId', '==', userId)
+              );
+
+              return transactionsRef.get().pipe(
+                switchMap(querySnapshot => {
+                  // Wenn keine Transaktionen mehr existieren, setze den Zähler zurück
+                  if (querySnapshot.empty) {
+                    const counterDocRef = this.firestore.collection('transactionCounters').doc<CounterDocument>(userId);
+                    return from(counterDocRef.set({ counter: 0 }, { merge: true })).pipe(
+                      tap(() => console.log(`Counter reset for user ${userId}`))
+                    );
+                  }
+                  return new Observable<void>(); // Keine Notwendigkeit, den Zähler zurückzusetzen, wenn noch Transaktionen vorhanden sind
+                })
+              );
+            }),
+            catchError(error => {
+              console.error('Error deleting transaction:', error);
+              return throwError(() => new Error('Failed to delete transaction'));
+            })
+          );
+        } else {
+          return throwError(() => new Error('No user logged in'));
+        }
+      }),
       catchError(error => {
-        console.error('Error deleting transaction:', error);
-        return throwError(() => new Error('Failed to delete transaction'));
+        console.error('Error during transaction deletion process:', error);
+        return throwError(() => new Error(error));
       })
     );
   }
+
 
   /**
    * Retrieves all transactions for the current user from Firestore.
    * @returns An observable containing an array of TransactionEntry objects.
    */
   getTransactions(): Observable<TransactionEntry[]> {
+    const userId = firebase.auth().currentUser?.uid;  // Hole die UID des aktuellen Benutzers
+    if (!userId) {
+      console.error('User not authenticated');
+    }
+
     return from(this.authService.getCurrentUser()).pipe(
       switchMap((user: firebase.User | null) => {
         if (user) {
           return this.firestore.collection<TransactionEntry>('transactions', ref =>
-            ref.orderBy('dateInMillis', 'desc') // Order by date descending
+            ref.orderBy('dateInMillis', 'desc') && ref.where('userId', '==', userId)
           ).valueChanges();
         } else {
           return new Observable<TransactionEntry[]>(); // Return an empty observable if no user is logged in
@@ -141,11 +205,13 @@ export class TransactionServiceComponent {
     return from(this.authService.getCurrentUser()).pipe(
       switchMap(user => {
         if (user) {
+          const userId = user.uid;
           return from(this.firestore.collection('transactions', ref =>
-            ref.where('incomeExpenses', '==', 'income') // Filter for income transactions
-              .where('date', '>=', new Date(year, 0, 1).toISOString()) // Filter for the year
+            ref.where('userId', '==', userId)  
+              .where('incomeExpenses', '==', 'income') 
+              .where('date', '>=', new Date(year, 0, 1).toISOString())
               .where('date', '<=', new Date(year + 1, 0, 1).toISOString())
-              .orderBy('date') // Optional: order by date
+              .orderBy('date')
           ).get()).pipe(
             map(querySnapshot => {
               let totalIncome = 0;
@@ -179,11 +245,13 @@ export class TransactionServiceComponent {
     return from(this.authService.getCurrentUser()).pipe(
       switchMap(user => {
         if (user) {
+          const userId = user.uid;
           return from(this.firestore.collection('transactions', ref =>
-            ref.where('incomeExpenses', '==', 'expense') // Filter for expense transactions
-              .where('date', '>=', new Date(year, 0, 1).toISOString()) // Filter for the year
-              .where('date', '<=', new Date(year + 1, 0, 1).toISOString())
-              .orderBy('date') // Optional: order by date
+            ref.where('userId', '==', userId)  
+              .where('incomeExpenses', '==', 'expense') 
+              .where('date', '>=', new Date(year, 0, 1).toISOString())
+              .where('date', '<', new Date(year + 1, 0, 1).toISOString())
+              .orderBy('date')
           ).get()).pipe(
             map(querySnapshot => {
               let totalExpenses = 0;
@@ -217,12 +285,14 @@ export class TransactionServiceComponent {
     return from(this.authService.getCurrentUser()).pipe(
       switchMap(user => {
         if (user) {
+          const userId = user.uid;
           const startOfYear = new Date(year, 0, 1).toISOString();
           const endOfYear = new Date(year + 1, 0, 1).toISOString();
 
           return this.firestore.collection('transactions', ref =>
-            ref.where('date', '>=', startOfYear)
-              .where('date', '<=', endOfYear)
+            ref.where('userId', '==', userId) 
+              .where('date', '>=', startOfYear)
+              .where('date', '<', endOfYear)
           ).get().pipe(
             map(querySnapshot => {
               // Debugging: Log the number of documents fetched

@@ -67,39 +67,48 @@ export class ReportService {
    * @returns {Promise<void>} A promise indicating the completion of the operation
    */
   saveReport(report: { id: string, name: string, blob: Blob }): Promise<void> {
-    const reportRef = this.firestore.collection('reports').doc(report.id);
+    return from(this.authService.getCurrentUser()).pipe(
+      switchMap(user => {
+        if (user) {
+          const reportRef = this.firestore.collection('reports').doc(report.id);
 
-    return new Promise((resolve, reject) => {
-      // Convert Blob to Base64 and save to Firestore
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64data = reader.result;
+          return new Promise<void>((resolve, reject) => {
+            // Convert Blob to Base64 and save to Firestore
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const base64data = reader.result;
 
-        if (typeof base64data === 'string') {
-          // Save the report in the Firestore collection "reports"
-          reportRef.set({
-            name: report.name,
-            data: base64data,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-          }).then(() => {
-            resolve();
-          }).catch((error) => {
-            console.error("Error saving report to Firestore:", error);
-            reject(error);
+              if (typeof base64data === 'string') {
+                // Save the report in the Firestore collection "reports" with userId
+                reportRef.set({
+                  name: report.name,
+                  data: base64data,
+                  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                  userId: user.uid // Hier wird die userId hinzugefügt
+                }).then(() => {
+                  resolve();
+                }).catch((error) => {
+                  console.error("Error saving report to Firestore:", error);
+                  reject(error);
+                });
+              } else {
+                reject(new Error('Error converting Blob to base64'));
+              }
+            };
+
+            reader.onerror = (error) => {
+              console.error('Error reading Blob:', error);
+              reject(error);
+            };
+
+            // Convert Blob to Base64 string
+            reader.readAsDataURL(report.blob);
           });
         } else {
-          reject(new Error('Error converting Blob to base64'));
+          return new Promise<void>((_, reject) => reject(new Error('No user logged in')));
         }
-      };
-
-      reader.onerror = (error) => {
-        console.error('Error reading Blob:', error);
-        reject(error);
-      };
-
-      // Convert Blob to Base64 string
-      reader.readAsDataURL(report.blob);
-    });
+      })
+    ).toPromise();
   }
 
   /** 
@@ -107,7 +116,18 @@ export class ReportService {
    * @returns {Observable<any>} Observable containing the saved reports
    */
   getReports(): Observable<any> {
-    return this.firestore.collection('reports', ref => ref.orderBy('createdAt', 'desc')).snapshotChanges();
+    return from(this.authService.getCurrentUser()).pipe(
+      switchMap(user => {
+        if (user) {
+          // Filter reports by userId
+          return this.firestore.collection('reports', ref =>
+            ref.where('userId', '==', user.uid).orderBy('createdAt', 'desc')
+          ).snapshotChanges();
+        } else {
+          throw new Error('No user logged in');
+        }
+      })
+    );
   }
 
   /** 

@@ -34,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatInputModule } from '@angular/material/input';
@@ -60,6 +61,7 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { StandingDialogComponent } from './standing-dialog/standing-dialog.component';
 
 registerLocaleData(localeDe);
 
@@ -82,7 +84,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransactionDialogComponent,
     BudgetDialogComponent,
     CategoriesComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    StandingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +109,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatInputModule,
     MatButtonModule,
     MatTableModule,
+    MatMenuModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,

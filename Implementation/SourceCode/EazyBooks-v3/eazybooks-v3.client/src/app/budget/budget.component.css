@@ -13,7 +13,7 @@ body {
 }
 
 .transactions-container {
-  width: 700px;
+  width: 100%;
   margin-top: 20px;
   overflow-y: auto;
   justify-content: center;
@@ -74,12 +74,14 @@ table {
   border-collapse: collapse;
   margin-bottom: 40px;
   background-color: var(--background-color);
+  table-layout: fixed;
 }
 
 th, td {
   padding: 0.5rem;
   text-align: left;
   border-bottom: 1px solid var(--input-border-color); /* Border color based on theme */
+  word-wrap: break-word;
 }
 
 th {
@@ -108,4 +110,14 @@ td img {
 h1 {
   text-align: center;
   color: var(--text-color); /* Color based on theme */
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 12px; /* Reduces font size on smaller screens */
+  }
+
+  th, td {
+    padding: 0.4rem; /* Less padding for smaller screens */
+  }
 }

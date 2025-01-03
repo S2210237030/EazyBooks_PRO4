@@ -1,6 +1,11 @@
-<button mat-fab (click)="openTransactionDialog()">
+<button mat-fab (click)="toggleMenu()" aria-label="Add" class="add-button">
   <mat-icon>add</mat-icon>
 </button>
+
+<div class="custom-menu" *ngIf="menuVisible">
+  <button class="menu-item" (click)="openTransactionDialog()">{{ 'TRANSACTION' | translate }}</button>
+  <button class="menu-item" (click)="openStandingOrderDialog()">{{ 'STANDING' | translate }}</button>
+</div>
 
 <!-- <h1>{{ 'TRANSACTIONS' | translate }}</h1> -->
 

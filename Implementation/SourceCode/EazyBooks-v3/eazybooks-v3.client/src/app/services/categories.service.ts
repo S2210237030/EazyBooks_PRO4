@@ -8,6 +8,7 @@ import firebase from 'firebase/compat/app';
 /**
  * CategoriesService manages categories in Firestore, including
  * initializing default categories, adding, deleting, and retrieving categories.
+ * Now, categories include the userId to associate with the current user.
  */
 @Injectable({
   providedIn: 'root'
@@ -38,19 +39,23 @@ export class CategoriesService {
     from(this.authService.getCurrentUser()).pipe(
       switchMap((user: firebase.User | null) => {
         if (user) {
-          // Check if the collection already contains data
-          return this.firestore.collection(this.collectionName).get().pipe(
+          // Get user ID
+          const userId = user.uid;
+          // Check if the collection already contains data for this user
+          return this.firestore.collection(this.collectionName, ref =>
+            ref.where('userId', '==', userId)
+          ).get().pipe(
             switchMap(snapshot => {
               if (snapshot.empty) {
-                // If the collection is empty, initialize the categories
+                // If the collection is empty for this user, initialize the categories
                 const batch = this.firestore.firestore.batch();
                 initialCategories.forEach(category => {
                   const docRef = this.firestore.collection(this.collectionName).doc();
-                  batch.set(docRef.ref, category);
+                  batch.set(docRef.ref, { ...category, userId: userId });
                 });
                 return from(batch.commit());
               } else {
-                // If the collection already contains data, do nothing
+                // If the collection already contains data for this user, do nothing
                 return new Observable<void>();
               }
             })
@@ -63,18 +68,32 @@ export class CategoriesService {
   }
 
   /**
-   * Adds a new category to the Firestore collection.
+   * Adds a new category to the Firestore collection, including userId.
    *
    * @param name - The name of the category to be added.
+   * @param repeatInterval - The repeat interval (e.g. 'monthly', 'yearly') for recurring transactions.
    * @returns An observable that completes when the category is added.
    */
   addCategory(name: string): Observable<void> {
-    const id = this.firestore.createId();
-    const category = {
-      id: id,
-      name: name
-    };
-    return from(this.firestore.collection(this.collectionName).doc(id).set(category));
+    return from(this.authService.getCurrentUser()).pipe(
+      switchMap((user: firebase.User | null) => {
+        if (user) {
+          const id = this.firestore.createId();
+          const category = {
+            id: id,
+            name: name,
+            userId: user.uid // Store the userId in the category
+          };
+
+          console.log('Adding category for user ID:', user.uid);  // Loggen der userId in der Konsole
+
+          return from(this.firestore.collection(this.collectionName).doc(id).set(category));
+        } else {
+          console.log('User not authenticated');
+          return new Observable<void>(); // Return an empty observable if no user is logged in
+        }
+      })
+    );
   }
 
   /**
@@ -88,7 +107,7 @@ export class CategoriesService {
   }
 
   /**
-   * Retrieves all categories from the Firestore collection.
+   * Retrieves all categories from the Firestore collection for the current user.
    *
    * @returns An observable that emits an array of category objects.
    */
@@ -97,12 +116,22 @@ export class CategoriesService {
       switchMap((user: firebase.User | null) => {
         if (user) {
           return this.firestore.collection(this.collectionName, ref =>
-            ref.orderBy('name', 'asc')
+            ref.where('userId', '==', user.uid).orderBy('name', 'asc')
           ).valueChanges();
         } else {
           return new Observable<any[]>(); // Return an empty observable if no user is logged in
         }
       })
     );
+  }
+
+  /**
+   * Retrieves a category by its ID from Firestore.
+   *
+   * @param id - The ID of the category to retrieve.
+   * @returns An observable that emits the category object.
+   */
+  getCategoryById(id: string): Observable<any> {
+    return this.firestore.collection(this.collectionName).doc(id).valueChanges();
   }
 }

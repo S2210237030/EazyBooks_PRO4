@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../services/auth-service.service';
+import { from } from 'rxjs';
 
 /**
  * The `CategoriesComponent` class is responsible for managing the categories within the application.
@@ -31,7 +33,8 @@ export class CategoriesComponent implements OnInit {
    */
   constructor(
     private categoriesService: CategoriesService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthService
   ) { }
 
   /**
@@ -50,13 +53,15 @@ export class CategoriesComponent implements OnInit {
    * Load categories from the service and translate their names.
    */
   loadCategories(): void {
-    this.categoriesService.getCategories().subscribe(categories => {
-      // Annahme: Kategorienamen werden direkt gespeichert
-      this.categories = categories.map(category => ({
-        ...category,
-        name: category.name // Namen direkt verwenden
-      }));
-      this.translateCategories();  // Übersetze die Namen nach dem Laden der Kategorien
+    // Umwandeln des Promises in ein Observable
+    from(this.authService.getCurrentUser()).subscribe(user => {
+      if (user) {
+        this.categoriesService.getCategories().subscribe(categories => {
+          // Nur die Kategorien des aktuellen Benutzers laden
+          this.categories = categories.filter(category => category.userId === user.uid);
+          this.translateCategories();  // Übersetze die Namen nach dem Laden der Kategorien
+        });
+      }
     });
   }
 

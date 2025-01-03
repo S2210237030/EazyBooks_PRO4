@@ -6,6 +6,7 @@ import { TransactionDialogComponent } from '../transaction-dialog/transaction-di
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { StandingDialogComponent } from '../standing-dialog/standing-dialog.component';
 
 /**
  * TransactionsComponent manages the display and handling of transactions.
@@ -32,6 +33,8 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   months: string[] = []; // Array of month names
 
+  menuVisible = false; // Boolean to toggle the menu
+
   constructor(
     private dialog: MatDialog, // MatDialog for opening dialog components
     private transactionService: TransactionServiceComponent, // Service for transaction operations
@@ -43,6 +46,30 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     this.loadTransactions(); // Load all transactions on component initialization
     this.loadIcons(); // Load document icons for display
     this.loadMonths(); // Load month names for filtering
+  }
+
+  /**
+   * Opens the dialog for adding a standing order.
+   */
+  openStandingOrderDialog(transaction?: TransactionEntry): void {
+    this.menuVisible = false;
+    console.log('openStandingOrderDialog called');
+    const dialogRef = this.dialog.open(StandingDialogComponent, {
+      width: '500px',
+      data: transaction || {} // Pass the transaction data to the dialog, if available
+    });
+
+    const dialogSub = dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadTransactions(); // Reload transactions if the dialog returns a result
+      }
+    });
+
+    this.subscription.add(dialogSub);
+  }
+
+  toggleMenu() {
+    this.menuVisible = !this.menuVisible;
   }
 
   /**
@@ -267,6 +294,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
    * @param transaction - The transaction to edit (optional)
    */
   openTransactionDialog(transaction?: TransactionEntry): void {
+    this.menuVisible = false;
     console.log('openTransactionDialog called');
     const dialogRef = this.dialog.open(TransactionDialogComponent, {
       width: '500px',
