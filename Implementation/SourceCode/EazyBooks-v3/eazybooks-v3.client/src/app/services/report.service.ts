@@ -45,7 +45,8 @@ export class ReportService {
           }
 
           return from(this.firestore.collection<TransactionEntry>('transactions', ref =>
-            ref.where('date', '>=', startDate.toISOString())
+            ref.where('userId', '==', user.uid)
+              .where('date', '>=', startDate.toISOString())
               .where('date', '<=', endDate.toISOString())
               .orderBy('date')
           ).valueChanges()).pipe(
@@ -84,7 +85,7 @@ export class ReportService {
                   name: report.name,
                   data: base64data,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                  userId: user.uid // Hier wird die userId hinzugefügt
+                  userId: user.uid
                 }).then(() => {
                   resolve();
                 }).catch((error) => {

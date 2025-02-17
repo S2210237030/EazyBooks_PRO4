@@ -354,11 +354,17 @@ export class TransactionServiceComponent {
       switchMap(user => {
         if (user) {
           return from(this.firestore.collection<TransactionEntry>('transactions', ref =>
-            ref.where('date', '>=', startIso) // Start date
-              .where('date', '<=', endIso)   // End date
-              .orderBy('date')               // Optional: order by date
+            ref.where('userId', '==', user.uid) // Filter by userId
+              .where('date', '>=', startIso)    // Start date
+              .where('date', '<=', endIso)      // End date
+              .orderBy('date')                  // Optional: order by date
           ).get()).pipe(
             map(querySnapshot => {
+              console.log('Found documents:', querySnapshot.size);
+              querySnapshot.docs.forEach(doc => {
+                const data = doc.data();
+                console.log('Document data:', data); // Zeige die Daten der Transaktionen
+              });
               // Map results to an array of transactions
               return querySnapshot.docs.map(doc => doc.data() as TransactionEntry);
             }),

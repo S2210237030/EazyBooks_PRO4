@@ -38,7 +38,7 @@
 
     <div id="imageUpload">
       <label for="fileUpload" class="upload-button">{{ 'UPLOAD_IMAGE' | translate }}</label>
-      <input type="file" id="fileUpload" (change)="onFileChange($event)" hidden>
+      <input type="file" id="fileUpload" (change)="onFileChange($event)" hidden accept="image/*">
 
       <span *ngIf="imageName" class="image-name">{{ imageName }}</span>
     </div>

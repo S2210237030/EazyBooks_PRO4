@@ -30,7 +30,8 @@ export const environment = {
     messagingSenderId: "1020819590485",
     appId: "1:1020819590485:web:86c9e735007d1f178973dc",
     measurementId: "G-F655KXNQT3"
-  }
+  },
+  encryptionKey: 'eazybooks5202'
 };
 
 

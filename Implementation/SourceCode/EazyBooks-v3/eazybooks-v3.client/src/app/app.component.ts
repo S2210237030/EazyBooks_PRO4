@@ -4,6 +4,10 @@ import { AuthService } from './services/auth-service.service';
 import { SettingsService } from './services/settings.service';
 import { TranslateService } from '@ngx-translate/core';
 
+import * as crypto from 'crypto-js';
+import { environment } from '../environments/environment';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 /**
  * AppComponent is the main component of the application,
  * responsible for handling user authentication, loading
@@ -21,18 +25,25 @@ export class AppComponent implements OnInit {
   isLoggedIn = false;
 
   /**
+   * Safe HTML content to display in the application.
+   */
+  safeContent: SafeHtml | undefined;
+
+  /**
    * Constructor to initialize the AppComponent.
    * 
    * @param router - The Angular router service for navigation.
    * @param authService - The authentication service for managing user sessions.
    * @param settingsService - The service to manage user settings.
    * @param translate - The translation service for language management.
+   * @param sanitizer - The Angular sanitizer service to sanitize HTML content.
    */
   constructor(
     private router: Router,
     private authService: AuthService,
     private settingsService: SettingsService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private sanitizer: DomSanitizer
   ) { }
 
   /** Default section to display */
@@ -74,6 +85,15 @@ export class AppComponent implements OnInit {
   }
 
   /** 
+   * Sanitize user input to prevent XSS attacks and display it in the application.
+   * 
+   * @param userInput - The user input to sanitize and display.
+   */
+  sanitizeInput(userInput: string) {
+    this.safeContent = this.sanitizer.bypassSecurityTrustHtml(userInput);
+  }
+
+  /** 
    * Save user preferences (language and theme) to local storage 
    * and apply them. If the user is logged in, preferences are 
    * also saved to the server.
@@ -82,8 +102,14 @@ export class AppComponent implements OnInit {
    * @param theme - The selected theme to apply.
    */
   savePreferences(language: string, theme: string) {
-    localStorage.setItem('language', language);
-    localStorage.setItem('theme', theme);
+    const encryptedLanguage = crypto.AES.encrypt(language, environment.encryptionKey).toString();
+    const encryptedTheme = crypto.AES.encrypt(theme, environment.encryptionKey).toString();
+
+    //localStorage.setItem('language', language);
+    //localStorage.setItem('theme', theme);
+    localStorage.setItem('language', encryptedLanguage);
+    localStorage.setItem('theme', encryptedTheme);
+
     this.applyLanguage(language);
     this.applyTheme(theme);
 
@@ -105,6 +131,17 @@ export class AppComponent implements OnInit {
         this.applyLanguage(language);
         this.applyTheme(theme);
       });
+    } else {
+      const encryptedLanguage = localStorage.getItem('language');
+      const encryptedTheme = localStorage.getItem('theme');
+
+      if (encryptedLanguage && encryptedTheme) {
+        const language = crypto.AES.decrypt(encryptedLanguage, environment.encryptionKey).toString(crypto.enc.Utf8);
+        const theme = crypto.AES.decrypt(encryptedTheme, environment.encryptionKey).toString(crypto.enc.Utf8);
+
+        this.applyLanguage(language);
+        this.applyTheme(theme);
+      }
     }
   }
 
