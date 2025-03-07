@@ -1,0 +1,114 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0" version="26.1.0">
+  <diagram name="Seite-1" id="7VqfOdaE3J8z0aNOb4O6">
+    <mxGraphModel dx="1571" dy="1072" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-1" target="TGFpQz9KQDQ9FufmAaug-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="394" y="50" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-2" target="TGFpQz9KQDQ9FufmAaug-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-2" value="Benutzer meldet sich an" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-5" target="TGFpQz9KQDQ9FufmAaug-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-5" value="Benutzer navigiert zur Budget-Seite" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-7" target="TGFpQz9KQDQ9FufmAaug-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-7" target="TGFpQz9KQDQ9FufmAaug-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-7" target="TGFpQz9KQDQ9FufmAaug-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-7" value="Entscheidung" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="374" y="290" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-9" target="TGFpQz9KQDQ9FufmAaug-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-9" value="Budget bearbeiten" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-10" target="TGFpQz9KQDQ9FufmAaug-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-10" value="Budget löschen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-11" target="TGFpQz9KQDQ9FufmAaug-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-11" value="neues Budget erstellen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-15" target="TGFpQz9KQDQ9FufmAaug-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="930" />
+              <mxPoint x="440" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-15" value="Löschen bestätigen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-16" target="TGFpQz9KQDQ9FufmAaug-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-16" value="zur Budget-Seite zurückkehren" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="970" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-20" target="TGFpQz9KQDQ9FufmAaug-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-20" value="Navigation zum Eingabefenster" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-21" target="TGFpQz9KQDQ9FufmAaug-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-21" value="Benutzer ändert Eingaben" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-25" target="TGFpQz9KQDQ9FufmAaug-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-25" target="TGFpQz9KQDQ9FufmAaug-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-25" value="Entscheidung" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="750" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-27" target="TGFpQz9KQDQ9FufmAaug-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-27" value="Budget löschen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TGFpQz9KQDQ9FufmAaug-28" target="TGFpQz9KQDQ9FufmAaug-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-28" value="neues Budget erstellen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-38" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="420" y="1060" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TGFpQz9KQDQ9FufmAaug-40" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="425" y="1065" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
